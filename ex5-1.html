@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜谜游戏</title>
+    <style>
+        html,body{
+	    width:100%;
+      	height:100%;
+      	margin:0px;
+      	overflow:hidden;
+      }
+        .banner{
+            width: 1200px;
+            height: 40px;
+            margin: 0 auto;
+            position: relative;
+            background-color: black;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .banner div{
+            width: 100%;
+            color: chartreuse;
+            font-family: 'Child Fun Sans Demo' ;
+            font-size: 25px;
+            position: absolute;
+
+        }
+        .viewbox{
+            width: 1200px;
+            height: 870px;
+            margin: 0 auto;
+            transition:all 1s ease;
+            position: relative;
+            
+
+        }
+        .viewbox div{
+            width: 100%;
+            height: 870px;
+            margin-bottom: 20px;
+            background-repeat:no-repeat;
+      	    background-position:center;
+      	    background-size:cover;
+        }
+        .viewbox video{
+            z-index: 4;
+        }
+        .btn_list{
+	    position:fixed;
+      	top:30%;
+      	right:50px;
+    }
+      ul{
+	    list-style-type:none;
+      }
+      li{
+	    width:20px;
+      	height:20px;
+      	margin-top:10px;
+      	border-radius:20px;
+      	background-color:#3D3D3D;
+      	cursor:pointer;
+      }
+      #li0{
+	    background-color:#10508D;
+      }
+      .cent{
+        text-align: center;
+        margin: 0 auto;
+        width: 1200px;
+        height: 100px;
+        margin-top: 20px;
+        font-family:'Child Fun Sans Demo' ;
+        font-size: 25px;
+        
+      }
+      
+      @keyframes image{
+	    0%{opacity:0}
+        25%{opacity: 0.7;}
+      	50%{opacity:0.9}
+        75%{opacity: 0.7;}
+      	100%{opacity:0}
+      }
+      
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div id="bannerr">我们邀请coser们演一出舞台剧,为此我们准备好了几个剧本,请你观看剧本后选出剧本内容的正确出处;提交按钮在最后</div>
+    </div>
+
+    <div class="viewbox" id="vvbox">
+        <div id="div1">
+            <video src="./res/剧本1.mp4" controls style="width: 1200px;"></video>
+            <div class="cent">
+                <form action="" id="form1">
+                    A.<input type="radio" name="script1">JOJO
+                    B.<input type="radio" name="script1">孤独摇滚
+                    C.<input type="radio" name="script1">少女歌剧
+                    D.<input type="radio" name="script1">轻音少女
+                </form>
+            </div>
+            <div id="starmate1"></div>
+        </div>
+        <div id="div2">
+            <video src="./res/剧本2.mp4" controls style="width: 1200px;"></video>
+            <div class="cent">
+                <form action="" id="form2">
+                    A.<input type="radio" name="script2">吹响吧！上低音号
+                    B.<input type="radio" name="script2">派对浪客诸葛孔明
+                    C.<input type="radio" name="script2">佐贺偶像是传奇
+                    D.<input type="radio" name="script2">迷途之子！！！！！
+                </form> 
+            </div>
+            <div id="starmate2"></div>
+        </div>
+        <div id="div3">
+            <video src="./res/剧本3.mp4" controls style="width: 1200px;"></video>
+            <div class="cent">
+                <form action="" id="form3">
+                    A.<input type="radio" name="script3">名侦探柯南
+                    B.<input type="radio" name="script3">银魂
+                    C.<input type="radio" name="script3">寒蝉鸣泣之时
+                    D.<input type="radio" name="script3">碧蓝之海
+                </form>
+            </div>
+            <div id="starmate3"></div>
+        </div>
+    </div>
+
+    <div class="btn_list">
+        <ul>
+          <li id="li0" ></li>
+          <li id="li1" ></li>
+          <li id="li2" ></li>
+        </ul>
+      </div>
+
+
+
+    <script>
+        left = 1200;
+        window.onload = animate();
+        function animate(){
+            var a = document.getElementById("bannerr");
+            a.style.left = left+"px";
+            left-=1;
+            if(left<-1017){
+                left = 1200;
+            }
+            window.requestAnimationFrame(animate);
+
+        }
+        var index = 0;//当前显示第几屏。0代表第1屏
+      
+      window.onload = addonclick();
+    	  function addonclick() {
+            
+          
+    	  //为li添加鼠标点击事件
+    	  for(var i=0;i<=2;i++){
+    		  document.getElementById("li"+i).onclick = function(){
+    			  
+    			  index = this.id.replace("li","");//通过id获取当前显示第几屏
+    			  
+    			  pageAnimate();
+    		  }
+    	  }
+    	  
+          }  
+      
+          function pageAnimate(){
+    	  
+    	  var height = 870;
+    	  document.getElementById("vvbox").style.top = -(height * index) + "px";
+		  
+    	  //设置右则浮动按扭的显示样式
+		  for(var i=0;i<=2;i++){
+			  document.getElementById("li"+i).style.backgroundColor = "#3D3D3D";
+		  }
+		  document.getElementById("li"+index).style.backgroundColor = "#10508D";
+      }
+      window.onload = createStar();
+      //创建星
+      function createStar(){
+    	  var offsetWidth = 3000;
+    	  var offsetHeight = 3000;
+    	  
+    	  //创建星，并设置相应样式
+    	  var star = document.createElement("img");
+    	  star.src = "res/star.jpg";
+          star.style.width="35px";
+          star.style.height="35px";
+    	  star.style.position = "absolute";
+    	  star.style.left = (Math.random()*offsetWidth)+"px";
+    	  star.style.top = (Math.random()*offsetHeight)+"px";
+    	  star.style.opacity = 0;
+    	  star.style.animation = "image 2s ease";//给星添加animation动画
+    	  
+    	  //动画完成，将星从body中删除
+    	  star.addEventListener("animationend",function(){
+    		  document.getElementById("starmate1").removeChild(this);
+              document.getElementById("starmate2").removeChild(this);
+              document.getElementById("starmate3").removeChild(this);
+    	  });
+    	  
+    	  //将星添加给body
+    	  document.getElementById("starmate1").appendChild(star);
+          document.getElementById("starmate2").appendChild(star);
+          document.getElementById("starmate3").appendChild(star);
+    	  
+    	  window.setTimeout("createStar()",100);
+      }
+      window.onload = function() {
+        var s1 = '剧本1的答案为B!';
+        var s2 = '剧本2的答案为D!';
+        var s3 = '剧本3的答案为A!';
+        
+
+        document.getElementById('form1').addEventListener('change', function() {
+        alert(s1);
+        
+    });
+    document.getElementById('form2').addEventListener('change', function() {
+        alert(s2);
+    });
+ 
+    document.getElementById('form3').addEventListener('change', function() {
+        alert(s3);
+    });
+      }
+      
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漫展展台互动</title>
+    <style>
+        .viewbox{
+            width: 1200px;
+            height: 768px;
+            border: 2px solid green;
+            border-radius: 5px;
+            margin: 0 auto;
+            perspective: 900px;
+            transform-style:preserve-3d;
+            perspective-origin: 50% 50%;
+            position: relative;
+
+        }
+        .viewbox div{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left: 400px;
+            top: 184px;
+            border-radius: 10px;
+        }
+        #div1{
+
+      	    transform-origin:left;
+      	    transition:all 0.5s ease;/* 过渡动画 */
+      	    z-index:5;
+        }
+        #div2{
+            width: 400px;
+
+      	    transform-origin:bottom;
+      	    transition:all 0.5s ease 0.5s;/* 过渡动画 */
+      	    z-index:4;
+        }
+        #div3{
+
+      	    transform-origin:right;
+      	    transition:all 0.5s ease 1s;/* 过渡动画 */
+      	    z-index:3;
+        }
+        #div4{
+            width: 400px;
+
+      	    transform-origin:top;
+      	    transition:all 0.5s ease 1.5s;/* 过渡动画 */
+      	    z-index:2;
+        }
+        #div5{
+            
+      	    transition:all 0.5s ease 2s;/* 过渡动画 */
+      	    z-index:1;
+            font-size: 32px;
+            font-family:'Child Fun Sans Demo' ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: gray;
+        }
+        #div55{
+            background-color: gray;
+            text-align: center;
+            border: 4px solid red;
+            border-radius: 10px;
+            cursor: pointer;
+            color: chartreuse;
+        }
+        #div55:hover{
+            background-color: cadetblue;
+        }
+        .viewbox2{
+            width: 1200px;
+            height: 150px;
+            margin: 0 auto;
+            border: 2px solid green;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .viewbox2 p{
+            font-family: 'ShanziGuaziTi Regular';
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="viewbox">
+        <div id="div1"><img src="./res/OIP-C.jpg" alt="" style="width: 400px;height: 400px;"></div>
+        <div id="div2"><img src="./res/R-C (1).jpg" alt="" style="width: 400px;height: 400px;"></div>
+        <div id="div3"><img src="./res/R-C (2).jpg" alt="" style="width: 400px;height: 400px;"></div>
+        <div id="div4"><img src="./res/R-C.jpg" alt="" style="width: 400px;height: 400px;"></div>
+        <div id="div5"><a id="div55" href="ex5-1">开始游戏</a></div>
+    </div>
+    <div class="viewbox2">
+        <p>漫展互动小游戏是为参与者提供了娱乐和竞争的机会，同时也为展会策划者提供了一个强大的工具，用来吸引更多观众，提高品牌知名度，促进交流与互动，还可以提升参观者的参与感与乐趣。 通过简单易玩的游戏内容、清晰明了的规则、有吸引力的奖品以及实时展示的游戏过程，可以让参观者在轻松愉快的氛围中了解展会信息，提高展会的交流效果和品牌形象。 展会互动小游戏是展会策划中不可或缺的一部分，将继续在未来引领展会互动的潮流。</p>
+    </div>
+    <script src="res/jquery/jQuery3.7.1.js"></script>
+    <script>
+        window.onload = animate;
+        function animate(){
+            document.getElementById("div1").style.transform = "rotatey(-100deg)";
+    	    document.getElementById("div2").style.transform = "rotatex(-90deg)";
+    	    document.getElementById("div3").style.transform = "rotatey(100deg)";
+    	    document.getElementById("div4").style.transform = "rotatex(90deg)";
+    	    document.getElementById("div5").style.transform = "";
+            $("#div55").fadeOut(2000);
+            $("#div55").fadeIn(2000);
+        }
+        
+    </script>
+</body>
+</html>
